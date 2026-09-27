@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Сводка недели — Беатриче</title>
+    <meta
+      name="description"
+      content="Сводка недели Беатриче — черновик трекера задач по неделям и сотрудникам."
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600&family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="titles">
+        <h1>Сводка недели</h1>
+        <p class="hypothesis">
+          Черновик для разговора: сотрудники и недели, не статусы. Имена, цвета и следующий этап можно поправить.
+        </p>
+      </div>
+      <button type="button" class="text-btn" id="reset">Вернуть пример</button>
+    </header>
+
+    <div class="toolbar">
+      <nav id="people" class="people-nav" aria-label="Сотрудники"></nav>
+      <p class="view-note">
+        «Все» — как смотрит руководитель. Имя — только задачи этого человека. Кто что имеет право видеть, ещё не решили.
+      </p>
+    </div>
+
+    <main>
+      <section id="overdue" class="strip" hidden></section>
+
+      <div class="week-bar">
+        <div class="week-move">
+          <button type="button" class="text-btn" id="prev-week" aria-label="Предыдущая неделя">Назад</button>
+          <h2 id="week-label"></h2>
+          <button type="button" class="text-btn" id="next-week" aria-label="Следующая неделя">Вперёд</button>
+          <button type="button" class="quiet" id="this-week" hidden>Эта неделя</button>
+        </div>
+        <div class="week-side">
+          <p class="legend">Жёлтая — срок сегодня, завтра или послезавтра. Красная — дата прошла, задачу не закрыли.</p>
+          <button type="button" class="text-btn" id="weekends">Показать выходные</button>
+        </div>
+      </div>
+
+      <div id="week" class="week"></div>
+
+      <section id="later" class="later-block" aria-label="Дальше по календарю"></section>
+    </main>
+
+    <div id="overlay" hidden>
+      <div class="backdrop" data-close></div>
+      <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-kicker">
+        <div class="panel-top">
+          <h2 id="panel-kicker"></h2>
+          <button type="button" class="quiet close" data-close>Закрыть</button>
+        </div>
+        <div id="links" class="links"></div>
+        <label class="field">
+          <span>Название</span>
+          <input id="title-input" type="text" autocomplete="off" placeholder="О чём задача" />
+        </label>
+        <div class="field">
+          <span>На ком</span>
+          <div id="assignees" class="chips"></div>
+        </div>
+        <label class="field">
+          <span>Срок</span>
+          <input id="due-input" type="date" />
+        </label>
+        <label class="field">
+          <span>Описание</span>
+          <textarea id="note-input" rows="4" placeholder="Что важно не забыть"></textarea>
+        </label>
+        <section class="thread-block">
+          <h3>Как идёт</h3>
+          <div id="thread" class="thread"></div>
+          <div id="authors" class="chips"></div>
+          <textarea id="entry-input" rows="3" placeholder="Что сделали или что спросить"></textarea>
+          <button type="button" class="quiet" id="add-entry">Записать</button>
+        </section>
+        <div id="next-box" class="next-box" hidden>
+          <p>Следующий этап забирает переписку этой задачи. Название и человека можно сменить.</p>
+          <label class="field">
+            <span>Название этапа</span>
+            <input id="next-title" type="text" autocomplete="off" />
+          </label>
+          <div id="next-people" class="chips"></div>
+          <label class="field">
+            <span>Новый срок</span>
+            <input id="next-due" type="date" />
+          </label>
+          <button type="button" class="solid" id="spawn">Открыть этап</button>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="quiet" id="start-next">Завершить и открыть следующий этап</button>
+          <button type="button" class="quiet" id="close-only">Закрыть без следующего этапа</button>
+          <button type="button" class="quiet" id="reopen" hidden>Вернуть в работу</button>
+          <button type="button" class="remove" id="delete-btn">Убрать задачу</button>
+        </div>
+      </aside>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

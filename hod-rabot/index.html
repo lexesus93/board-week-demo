@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ход работ — Беатриче</title>
+    <meta
+      name="description"
+      content="Ход работ Беатриче — кликабельный черновик доски для разговора, не рабочий инструмент."
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600&family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="titles">
+        <h1>Ход работ</h1>
+        <p class="hypothesis">
+          Проекты, колонки и имена — черновик для разговора, не согласованная схема. На доске не весь штат.
+        </p>
+      </div>
+      <button type="button" class="text-btn" id="reset">Вернуть пример</button>
+    </header>
+
+    <nav id="projects" class="projects" aria-label="Проекты"></nav>
+
+    <main id="board" aria-label="Доска"></main>
+
+    <div id="overlay" hidden>
+      <div class="backdrop" data-close></div>
+      <aside class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-kicker">
+        <div class="panel-top">
+          <h2 id="panel-kicker"></h2>
+          <button type="button" class="quiet close" data-close>Закрыть</button>
+        </div>
+        <label class="field">
+          <span>Название</span>
+          <input id="title-input" type="text" autocomplete="off" placeholder="Кратко, о чём дело" />
+        </label>
+        <label class="field grow">
+          <span>Заметка</span>
+          <textarea id="note-input" rows="7" placeholder="Что важно не забыть"></textarea>
+        </label>
+        <div class="people">
+          <span>Ведёт</span>
+          <div id="people-list" class="people-list"></div>
+        </div>
+        <div class="remind-block">
+          <button type="button" class="quiet" id="remind-btn">Напомнить</button>
+          <p id="later" class="later" hidden>
+            Письмо или сообщение в мессенджер появятся позже. Сейчас ничего не отправляется.
+          </p>
+        </div>
+        <button type="button" class="remove" id="delete-btn">Убрать карточку</button>
+      </aside>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
